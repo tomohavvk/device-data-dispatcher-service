@@ -6,7 +6,7 @@ val root = project
   .settings(
     Seq(
       name := "device-data-dispatcher-service",
-      version := "0.0.4-SNAPSHOT",
+      version := "0.1.0",
       organization := "org.tomohavvk",
       scalaVersion := "2.12.10",
       scalacOptions := scalacOptionsConfig
