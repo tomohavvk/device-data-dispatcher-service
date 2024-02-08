@@ -30,3 +30,13 @@ curl -X 'POST' \
   "time": 1707402580
 }'
 ```
+
+
+## Kafka
+kubectl exec -it deployments/kafka  -- kafka-topics.sh --bootstrap-server kafka-service:9092 --topic device-data.location --describe
+kubectl exec -it deployments/kafka  -- kafka-topics.sh --bootstrap-server kafka-service:9092 --topic device-data.location --delete
+
+kubectl exec -it deployments/kafka -- kafka-topics.sh --bootstrap-server kafka-service:9092 --topic device-data.location --create --replication-factor 1 --partitions 2
+
+
+cd loadtests && bzt scenario.yml

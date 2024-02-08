@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: device-data-dispatcher-service
-          image: ihorzadyra/device-data-dispatcher-service:latest
+          image: ihorzadyra/device-data-dispatcher-service:0.0.4-SNAPSHOT
           ports:
             - containerPort: 9000
               protocol: TCP
