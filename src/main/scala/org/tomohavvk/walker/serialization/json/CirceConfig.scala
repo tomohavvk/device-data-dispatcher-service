@@ -1,4 +1,4 @@
-package org.tomohavvk.walker.serialization
+package org.tomohavvk.walker.serialization.json
 
 import io.circe.generic.extras.Configuration
 

@@ -77,7 +77,8 @@ object Library {
   }
 
   object Kafka {
-    val fs2Kafka = "com.github.fd4s" %% "fs2-kafka" % "2.5.0-M3"
+    val fs2Kafka       = "com.github.fd4s" %% "fs2-kafka"        % "3.2.0"
+    val fs2KafkaVulcan = "com.github.fd4s" %% "fs2-kafka-vulcan" % "3.2.0"
   }
 
   object Tests {
@@ -114,6 +115,7 @@ object Library {
     Http.openApiCirce,
     Http.swaggerUI,
     Kafka.fs2Kafka,
+    Kafka.fs2KafkaVulcan,
     Logging.odin,
     Utils.chimney,
     Utils.enumeratum,

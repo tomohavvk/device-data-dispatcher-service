@@ -11,6 +11,7 @@ val root = project
       scalaVersion := "2.12.10",
       scalacOptions := scalacOptionsConfig
     ) ++ additionalSettings ++ BuildInfoConfig.settings,
-    libraryDependencies ++= appLibs
+    libraryDependencies ++= appLibs,
+    resolvers += "confluent" at "https://packages.confluent.io/maven/"
   )
   .enablePlugins(JavaAppPackaging, BuildInfoPlugin)

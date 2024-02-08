@@ -5,6 +5,7 @@ import io.estatico.newtype.macros.newtype
 import java.time.LocalDateTime
 
 object Types {
+  @newtype case class EventId(value: String)
   @newtype case class DeviceId(value: String)
   @newtype case class Latitude(value: Double)
   @newtype case class Longitude(value: Double)

@@ -4,7 +4,7 @@ import org.tomohavvk.walker.http.endpoints.codecs.ErrorCodecs
 import org.tomohavvk.walker.http.endpoints.codecs.LocationCodecs
 import org.tomohavvk.walker.http.endpoints.codecs.ProbeCodecs
 import org.tomohavvk.walker.http.endpoints.schemas.EndpointSchemas
-import org.tomohavvk.walker.serialization.ProtocolSerialization
+import org.tomohavvk.walker.serialization.json.ProtocolSerialization
 import sttp.tapir.codec.enumeratum.TapirCodecEnumeratum
 import sttp.tapir.generic.auto.SchemaDerivation
 import sttp.tapir.generic.{Configuration => TapirConfiguration}

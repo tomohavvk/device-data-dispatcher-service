@@ -1,14 +1,14 @@
-package org.tomohavvk.walker.serialization
+package org.tomohavvk.walker.serialization.json
 
 import enumeratum.values.Circe
 import enumeratum.values.StringEnum
 import enumeratum.values.StringEnumEntry
+import io.circe.generic.extras.semiauto.deriveConfiguredCodec
+import io.circe.syntax.EncoderOps
 import io.circe.Codec
 import io.circe.Decoder
 import io.circe.Encoder
 import io.circe.Json
-import io.circe.generic.extras.semiauto.deriveConfiguredCodec
-import io.circe.syntax.EncoderOps
 import org.tomohavvk.walker.protocol.Types.DeviceId
 import org.tomohavvk.walker.protocol.Types.Latitude
 import org.tomohavvk.walker.protocol.Types.Longitude
