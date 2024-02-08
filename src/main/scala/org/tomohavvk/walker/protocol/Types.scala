@@ -3,9 +3,11 @@ package org.tomohavvk.walker.protocol
 import io.estatico.newtype.macros.newtype
 
 import java.time.LocalDateTime
+import java.util.UUID
 
 object Types {
-  @newtype case class EventId(value: String)
+  type Key = UUID
+  @newtype case class EventId(value: Key)
   @newtype case class DeviceId(value: String)
   @newtype case class Latitude(value: Double)
   @newtype case class Longitude(value: Double)

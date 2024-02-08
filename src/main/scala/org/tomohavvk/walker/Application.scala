@@ -19,11 +19,11 @@ class Application[F[_]: Async: Console](implicit environment: Environment[F]) {
   import environment.contextLogger
 
   def run(): F[ExitCode] =
-    ResourceModule.make().use { implicit resources =>
+    ResourceModule.make(configs.deviceLocationEventProducer).use { implicit resources =>
       for {
         _ <- logger.info(s"Starting ${BuildInfo.name} ${BuildInfo.version}...")
 
-        services  = ServiceModule.make(contextLogger)
+        services  = ServiceModule.make(resources, contextLogger)
         endpoints = EndpointModule.make
         routes    = RoutesModule.make(endpoints, services)
         server    = HttpModule.make(routes)
