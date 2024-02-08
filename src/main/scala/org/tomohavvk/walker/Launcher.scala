@@ -15,7 +15,7 @@ object Launcher extends IOApp {
     }
 
   private def runApp(implicit environment: Environment[IO]): IO[ExitCode] =
-    new Application[IO].run
+    new Application[IO].run()
 
   private def failApp(exception: Exception): IO[ExitCode] =
     Console[IO]

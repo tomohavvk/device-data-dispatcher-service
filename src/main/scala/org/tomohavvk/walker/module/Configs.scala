@@ -15,9 +15,9 @@ import pureconfig.module.enumeratum._
 import pureconfig.module.catseffect.syntax.CatsEffectConfigSource
 
 case class Configs(
-  app:                        AppConfig,
-  server:                     ServerConfig,
-  deviceGeoDataEventProducer: ProducerConfig)
+  app:                         AppConfig,
+  server:                      ServerConfig,
+  deviceLocationEventProducer: ProducerConfig)
 
 object Configs {
 
