@@ -39,7 +39,7 @@ class EventCodecsSpec
     "DeviceLocationEvent codec working as expected" in {
       val expected = getResource("DeviceLocationEvent-avro-schema.json")
       val actual   = codecDeviceLocationEvent.schema.value.toString.stripMargin
-
+      println(actual)
       actual shouldBe expected
     }
   }

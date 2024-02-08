@@ -38,7 +38,10 @@
         "fields": [
           {
             "name": "id",
-            "type": "string"
+            "type": {
+              "type": "string",
+              "logicalType": "uuid"
+            }
           },
           {
             "name": "processed_at",
