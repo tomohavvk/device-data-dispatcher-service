@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: device-data-handler-service
+  name: device-data-dispatcher-service
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: device-data-handler-service
+      app: device-data-dispatcher-service
   template:
     metadata:
       labels:
-        app: device-data-handler-service
+        app: device-data-dispatcher-service
     spec:
       containers:
-        - name: device-data-handler-service
-          image: ihorzadyra/device-data-handler-service:0.0.3-SNAPSHOT
+        - name: device-data-dispatcher-service
+          image: ihorzadyra/device-data-dispatcher-service:0.0.4-SNAPSHOT
           ports:
             - containerPort: 9000
               protocol: TCP
@@ -30,13 +30,12 @@ spec:
   revisionHistoryLimit: 10
   progressDeadlineSeconds: 600
 
-
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: device-data-handler-service-node-port
+  name: device-data-dispatcher-service-node-port
   namespace: default
 spec:
   type: NodePort
@@ -44,4 +43,4 @@ spec:
     - port: 9000
       targetPort: 9000
   selector:
-    app: device-data-handler-service
+    app: device-data-dispatcher-service

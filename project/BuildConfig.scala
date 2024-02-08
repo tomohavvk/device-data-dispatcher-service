@@ -14,7 +14,7 @@ object BuildConfig {
     val settings = Seq(
       dockerBaseImage := "openjdk:8-jre-slim",
       dockerUsername := Some("ihorzadyra"),
-      Docker / packageName := "device-data-handler-service",
+      Docker / packageName := "device-data-dispatcher-service",
       dockerExposedPorts := Seq(9000)
     )
   }
@@ -33,7 +33,7 @@ object BuildConfig {
   )
 
   object BuildInfoConfig {
-    private val serviceName         = BuildInfoKey.map(name)(_._1 -> "device-data-handler-service")
+    private val serviceName         = BuildInfoKey.map(name)(_._1 -> "device-data-dispatcher-service")
     private val packageName         = "org.tomohavvk.walker"
     private val buildInfoKeysCustom = Seq[BuildInfoKey](version, scalaVersion, sbtVersion, serviceName)
 
