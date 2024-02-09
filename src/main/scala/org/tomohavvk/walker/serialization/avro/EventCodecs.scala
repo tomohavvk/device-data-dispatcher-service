@@ -7,6 +7,7 @@ import org.tomohavvk.walker.protocol.events.Event
 import org.tomohavvk.walker.protocol.events.Metadata
 import vulcan.Codec
 import cats.syntax.all._
+import org.tomohavvk.walker.protocol.DeviceLocation
 
 trait EventCodecs {
 
@@ -20,12 +21,11 @@ trait EventCodecs {
     ).mapN(Metadata)
   }
 
-  implicit val codecDeviceLocationEvent: Codec[DeviceLocationEvent] = Codec.record(
-    name = "DeviceLocationEvent",
+  implicit val codecDeviceLocation: Codec[DeviceLocation] = Codec.record(
+    name = "DeviceLocation",
     namespace = "org.tomohavvk.walker.protocol.events"
   ) { field =>
     (
-      field("device_id", _.deviceId),
       field("latitude", _.latitude),
       field("longitude", _.longitude),
       field("accuracy", _.accuracy),
@@ -34,6 +34,16 @@ trait EventCodecs {
       field("time", _.time),
       field("bearing", _.bearing),
       field("altitudeAccuracy", _.altitudeAccuracy)
+    ).mapN(DeviceLocation)
+  }
+
+  implicit val codecDeviceLocationEvent: Codec[DeviceLocationEvent] = Codec.record(
+    name = "DeviceLocationEvent",
+    namespace = "org.tomohavvk.walker.protocol.events"
+  ) { field =>
+    (
+      field("device_id", _.deviceId),
+      field("locations", _.locations)
     ).mapN(DeviceLocationEvent)
   }
 

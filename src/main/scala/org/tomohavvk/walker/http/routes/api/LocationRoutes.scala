@@ -21,12 +21,8 @@ class LocationRoutes[F[_]: Async](
 
   private val handleDeviceLocationRoute: HttpRoutes[F] =
     endpoints.handleDeviceLocationEndpoint.toRoutes(
-      {
-        case (_, request) => service.publish(request)
-      },
-      {
-        case (traceId, request) => LogContext(traceId.some, request.deviceId.some)
-      }
+      request => service.publish(request.deviceId, request.deviceLocations),
+      request => LogContext(request.traceId.some, request.deviceId.some)
     )
 
   val routes: HttpRoutes[F] = handleDeviceLocationRoute

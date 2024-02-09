@@ -9,6 +9,7 @@ import io.circe.Codec
 import io.circe.Decoder
 import io.circe.Encoder
 import io.circe.Json
+import org.tomohavvk.walker.protocol.DeviceLocation
 import org.tomohavvk.walker.protocol.Types.Accuracy
 import org.tomohavvk.walker.protocol.Types.Altitude
 import org.tomohavvk.walker.protocol.Types.AltitudeAccuracy
@@ -22,7 +23,6 @@ import org.tomohavvk.walker.protocol.error.AppError
 import org.tomohavvk.walker.protocol.error.errors.InternalError
 import org.tomohavvk.walker.protocol.error.views.AcknowledgeView
 import org.tomohavvk.walker.protocol.error.views.ProbeView
-import org.tomohavvk.walker.protocol.requests.DeviceLocationRequest
 
 trait ProtocolSerialization extends CirceConfig {
 
@@ -41,9 +41,9 @@ trait ProtocolSerialization extends CirceConfig {
   implicit val codecAltitudeAccuracy: Codec[AltitudeAccuracy] =
     Codec.from(AltitudeAccuracy.deriving, AltitudeAccuracy.deriving)
 
-  implicit val codecDeviceLocationRequest: Codec[DeviceLocationRequest] = deriveConfiguredCodec[DeviceLocationRequest]
-  implicit val codecAcknowledgeView: Codec[AcknowledgeView]             = deriveConfiguredCodec[AcknowledgeView]
-  implicit val codecProbesView: Codec[ProbeView]                        = deriveConfiguredCodec[ProbeView]
+  implicit val codecDeviceLocationRequest: Codec[DeviceLocation] = deriveConfiguredCodec[DeviceLocation]
+  implicit val codecAcknowledgeView: Codec[AcknowledgeView]      = deriveConfiguredCodec[AcknowledgeView]
+  implicit val codecProbesView: Codec[ProbeView]                 = deriveConfiguredCodec[ProbeView]
 
   implicit lazy val codecAppError: Codec[AppError] = Codec.from(appErrorDecoder, appErrorEncoder)
 

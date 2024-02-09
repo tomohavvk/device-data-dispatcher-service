@@ -1,5 +1,6 @@
 package org.tomohavvk.walker.protocol.events
 
+import org.tomohavvk.walker.protocol.DeviceLocation
 import org.tomohavvk.walker.protocol.Types.Accuracy
 import org.tomohavvk.walker.protocol.Types.Altitude
 import org.tomohavvk.walker.protocol.Types.AltitudeAccuracy
@@ -16,15 +17,8 @@ sealed trait AppEvent
 case class Metadata(id: EventId, producedAt: UnixTime)
 
 case class DeviceLocationEvent(
-  deviceId:         DeviceId,
-  latitude:         Latitude,
-  longitude:        Longitude,
-  accuracy:         Accuracy,
-  altitude:         Altitude,
-  speed:            Speed,
-  time:             UnixTime,
-  bearing:          Option[Bearing] = None,
-  altitudeAccuracy: Option[AltitudeAccuracy] = None)
+  deviceId:  DeviceId,
+  locations: List[DeviceLocation])
     extends AppEvent
 
 case class Event(event: AppEvent, meta: Metadata)
