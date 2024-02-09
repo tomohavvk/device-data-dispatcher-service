@@ -11,6 +11,11 @@ object Types {
   @newtype case class DeviceId(value: String)
   @newtype case class Latitude(value: Double)
   @newtype case class Longitude(value: Double)
+  @newtype case class Accuracy(value: Double)
+  @newtype case class Altitude(value: Double)
+  @newtype case class Bearing(value: Double)
+  @newtype case class AltitudeAccuracy(value: Double)
+  @newtype case class Speed(value: Double)
   @newtype case class UnixTime(value: Long)
 
   @newtype case class TraceId(value: String)

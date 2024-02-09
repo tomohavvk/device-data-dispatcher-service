@@ -1,9 +1,6 @@
 package org.tomohavvk.walker.http.endpoints.schemas
 
-import org.tomohavvk.walker.protocol.Types.DeviceId
-import org.tomohavvk.walker.protocol.Types.Latitude
-import org.tomohavvk.walker.protocol.Types.Longitude
-import org.tomohavvk.walker.protocol.Types.UnixTime
+import org.tomohavvk.walker.protocol.Types._
 import org.tomohavvk.walker.protocol.error.AppError
 import sttp.tapir.Schema._
 import sttp.tapir.SchemaType.SProductField
@@ -26,10 +23,15 @@ trait EndpointSchemas {
       )
     )
 
-  implicit val tapirDeviceIdSchema: Schema[DeviceId]   = DeviceId.deriving
-  implicit val tapirLatitudeSchema: Schema[Latitude]   = Latitude.deriving
-  implicit val tapirLongitudeSchema: Schema[Longitude] = Longitude.deriving
-  implicit val tapirUnixTimeSchema: Schema[UnixTime]   = UnixTime.deriving
+  implicit val tapirDeviceIdSchema: Schema[DeviceId]                 = DeviceId.deriving
+  implicit val tapirLatitudeSchema: Schema[Latitude]                 = Latitude.deriving
+  implicit val tapirLongitudeSchema: Schema[Longitude]               = Longitude.deriving
+  implicit val tapirUnixTimeSchema: Schema[UnixTime]                 = UnixTime.deriving
+  implicit val tapirAccuracySchema: Schema[Accuracy]                 = Accuracy.deriving
+  implicit val tapirAltitudeSchema: Schema[Altitude]                 = Altitude.deriving
+  implicit val tapirSpeedSchema: Schema[Speed]                       = Speed.deriving
+  implicit val tapirBearingSchema: Schema[Bearing]                   = Bearing.deriving
+  implicit val tapirAltitudeAccuracySchema: Schema[AltitudeAccuracy] = AltitudeAccuracy.deriving
 }
 
 object EndpointSchemas extends EndpointSchemas

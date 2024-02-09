@@ -28,7 +28,12 @@ trait EventCodecs {
       field("device_id", _.deviceId),
       field("latitude", _.latitude),
       field("longitude", _.longitude),
-      field("time", _.time)
+      field("accuracy", _.accuracy),
+      field("altitude", _.altitude),
+      field("speed", _.speed),
+      field("time", _.time),
+      field("bearing", _.bearing),
+      field("altitudeAccuracy", _.altitudeAccuracy)
     ).mapN(DeviceLocationEvent)
   }
 

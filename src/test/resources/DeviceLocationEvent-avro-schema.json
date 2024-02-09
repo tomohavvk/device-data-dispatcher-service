@@ -16,8 +16,34 @@
       "type": "double"
     },
     {
+      "name": "accuracy",
+      "type": "double"
+    },
+    {
+      "name": "altitude",
+      "type": "double"
+    },
+    {
+      "name": "speed",
+      "type": "double"
+    },
+    {
       "name": "time",
       "type": "long"
+    },
+    {
+      "name": "bearing",
+      "type": [
+        "null",
+        "double"
+      ]
+    },
+    {
+      "name": "altitudeAccuracy",
+      "type": [
+        "null",
+        "double"
+      ]
     }
   ]
 }

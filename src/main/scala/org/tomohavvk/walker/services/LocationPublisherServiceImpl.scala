@@ -1,6 +1,5 @@
 package org.tomohavvk.walker.services
 
-import cats.Applicative
 import cats.effect.kernel.Clock
 import cats.effect.kernel.Sync
 import cats.implicits.catsSyntaxApplicativeError
@@ -23,6 +22,7 @@ import org.tomohavvk.walker.protocol.requests.DeviceLocationRequest
 import org.tomohavvk.walker.utils.ContextFlow
 import org.tomohavvk.walker.utils.anySyntax
 import org.tomohavvk.walker.utils.liftFSyntax
+import io.scalaland.chimney.dsl._
 
 import java.util.UUID
 
@@ -55,11 +55,7 @@ class LocationPublisherServiceImpl[F[_]: Sync: Clock](
       val producedAt = UnixTime(realTime)
 
       val metadata = Metadata(eventId, producedAt)
-      val event = DeviceLocationEvent(deviceId = request.deviceId,
-                                      latitude = request.latitude,
-                                      longitude = request.longitude,
-                                      time = request.time
-      )
+      val event    = request.transformInto[DeviceLocationEvent]
 
       Event(event, metadata)
     }

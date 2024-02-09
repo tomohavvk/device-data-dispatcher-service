@@ -9,9 +9,14 @@ import io.circe.Codec
 import io.circe.Decoder
 import io.circe.Encoder
 import io.circe.Json
+import org.tomohavvk.walker.protocol.Types.Accuracy
+import org.tomohavvk.walker.protocol.Types.Altitude
+import org.tomohavvk.walker.protocol.Types.AltitudeAccuracy
+import org.tomohavvk.walker.protocol.Types.Bearing
 import org.tomohavvk.walker.protocol.Types.DeviceId
 import org.tomohavvk.walker.protocol.Types.Latitude
 import org.tomohavvk.walker.protocol.Types.Longitude
+import org.tomohavvk.walker.protocol.Types.Speed
 import org.tomohavvk.walker.protocol.Types.UnixTime
 import org.tomohavvk.walker.protocol.error.AppError
 import org.tomohavvk.walker.protocol.error.errors.InternalError
@@ -27,7 +32,14 @@ trait ProtocolSerialization extends CirceConfig {
   implicit val codecDeviceId: Codec[DeviceId]   = Codec.from(DeviceId.deriving, DeviceId.deriving)
   implicit val codecLatitude: Codec[Latitude]   = Codec.from(Latitude.deriving, Latitude.deriving)
   implicit val codecLongitude: Codec[Longitude] = Codec.from(Longitude.deriving, Longitude.deriving)
+  implicit val codecAccuracy: Codec[Accuracy]   = Codec.from(Accuracy.deriving, Accuracy.deriving)
+  implicit val codecAltitude: Codec[Altitude]   = Codec.from(Altitude.deriving, Altitude.deriving)
+  implicit val codecSpeed: Codec[Speed]         = Codec.from(Speed.deriving, Speed.deriving)
+  implicit val codecBearing: Codec[Bearing]     = Codec.from(Bearing.deriving, Bearing.deriving)
   implicit val codecUnixTime: Codec[UnixTime]   = Codec.from(UnixTime.deriving, UnixTime.deriving)
+
+  implicit val codecAltitudeAccuracy: Codec[AltitudeAccuracy] =
+    Codec.from(AltitudeAccuracy.deriving, AltitudeAccuracy.deriving)
 
   implicit val codecDeviceLocationRequest: Codec[DeviceLocationRequest] = deriveConfiguredCodec[DeviceLocationRequest]
   implicit val codecAcknowledgeView: Codec[AcknowledgeView]             = deriveConfiguredCodec[AcknowledgeView]

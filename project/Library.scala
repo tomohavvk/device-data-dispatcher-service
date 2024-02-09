@@ -6,7 +6,7 @@ object Library {
     val blaze         = "0.23.14"
     val catsCore      = "2.9.0"
     val catsEffect    = "3.4.11"
-    val chimney       = "0.7.5"
+    val chimney       = "0.8.5"
     val circe         = "0.14.3"
     val doobie        = "1.0.0-RC2"
     val enumeratum    = "1.7.2"
