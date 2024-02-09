@@ -15,12 +15,34 @@ spec:
     spec:
       containers:
         - name: device-data-dispatcher-service
-          image: ihorzadyra/device-data-dispatcher-service:0.0.4-SNAPSHOT
+          image: ihorzadyra/device-data-dispatcher-service:0.1.2
+          env:
+            - name: JAVA_OPTS
+              value: -Dconfig.resource=production.conf
           ports:
             - containerPort: 9000
               protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /probes/readiness
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /probes/liveness
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
           resources: {}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
       restartPolicy: Always
   strategy:
     type: RollingUpdate

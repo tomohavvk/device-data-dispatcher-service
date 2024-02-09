@@ -5,6 +5,9 @@
 - kubectl apply -f ./charts/schema-registry-deployment.yaml
 - kubectl apply -f ./charts/device-data-dispatcher-service-deployment.yaml
 
+- kubectl apply -f ./charts/zookeeper-deployment.yaml && kubectl apply -f ./charts/kafka-deployment.yaml && kubectl apply -f ./charts/kafka-deployment.yaml && kubectl apply -f ./charts/schema-registry-deployment.yaml && kubectl apply -f ./charts/device-data-dispatcher-service-deployment.yaml
+
+
 ## alternative way
 - kubectl expose deployment device-data-dispatcher-service --type=LoadBalancer --port=9000
 - OR
