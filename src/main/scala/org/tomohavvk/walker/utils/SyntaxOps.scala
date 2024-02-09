@@ -30,6 +30,9 @@ final class LiftFOps[F[_]: Applicative, A](private val a: F[A]) {
 
   def liftF: AppFlow[F, A] =
     EitherT.liftF[F, AppError, A](a)
+
+  def liftFlow: ContextFlow[F, A] =
+    EitherT.liftF[F, AppError, A](a).liftFlow
 }
 
 trait AppResultSyntax {

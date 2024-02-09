@@ -1,8 +1,10 @@
 package org.tomohavvk.walker.services
 
+import cats.Applicative
 import cats.effect.kernel.Clock
 import cats.effect.kernel.Sync
-import cats.implicits.catsSyntaxApplyOps
+import cats.implicits.catsSyntaxApplicativeError
+import cats.implicits.catsSyntaxFlatMapOps
 import cats.implicits.catsSyntaxFlatten
 import cats.implicits.toFlatMapOps
 import cats.implicits.toFunctorOps
@@ -19,7 +21,7 @@ import org.tomohavvk.walker.protocol.events.Event
 import org.tomohavvk.walker.protocol.events.Metadata
 import org.tomohavvk.walker.protocol.requests.DeviceLocationRequest
 import org.tomohavvk.walker.utils.ContextFlow
-import org.tomohavvk.walker.utils.appResultSyntax
+import org.tomohavvk.walker.utils.anySyntax
 import org.tomohavvk.walker.utils.liftFSyntax
 
 import java.util.UUID
@@ -31,14 +33,18 @@ class LocationPublisherServiceImpl[F[_]: Sync: Clock](
   import eventProducer._
 
   override def publish(request: DeviceLocationRequest): ContextFlow[F, AcknowledgeView] =
-    logger.debug(request.toString) *>
+    logger.debug(request.toString) >>
       makeEvent(request)
-        .flatTap { event =>
-          producer.produce(ProducerRecords.one(ProducerRecord(topic, event.meta.id.value, event))).flatten
+        .flatMap { event =>
+          producer.produce(ProducerRecords.one(ProducerRecord(topic, event.meta.id.value, event))).flatten.attempt
         }
-        .liftF
         .liftFlow
-        .as(AcknowledgeView(true))
+        .flatMap {
+          case Right(_) => AcknowledgeView(true).rightT
+          case Left(error) =>
+            logger.debug(error.getLocalizedMessage) >>
+              AcknowledgeView(false).rightT
+        }
 
   private def makeEvent(request: DeviceLocationRequest): F[Event] =
     for {
